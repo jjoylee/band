@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.band.mapper.BandMapper">
+  
+  <insert id="insert" >
+  insert into band (name, bandCoverId, leaderAccountId) values
+  ( #{name}, #{bandCoverId}, #{leaderAccountId})
+  </insert>
+
+  <update id="update"> 
+  update band set name=#{name}, bandCoverId =#{bandCoverId}, leaderAccountId = #{leaderAccountId}
+  where id=#{id}
+  </update>
+
+  <delete id="delete">
+  delete from band
+  where id=#{id} 
+  </delete>
+
+  <select id="findBand" resultType="com.band.domain.Band" >
+  <![CDATA[
+  	select * from band
+  	where name= #{name} and bandCoverId =#{bandCoverId} and leaderAccountId = #{leaderAccountId}
+  ]]>
+  </select>
+  
+  <select id="findBandList" resultType="com.band.domain.Band">
+	<![CDATA[
+	select band.id as id ,band.name as name, bandImg.bandImgUrl as imgUrl, bandCover.color as color from band, bandAccount, bandImg, bandCover
+	where band.id = bandAccount.bandId and band.bandCoverId = bandCover.id
+	and bandImgId = bandImg.id and bandAccount.accountId = #{accountId}
+	]]>
+	</select>
+	
+   <select id="findBandForBoard" resultType="com.band.domain.Band">
+	<![CDATA[
+	select band.id as id ,band.name as name, bandImg.bandImgUrl as imgUrl, bandCover.color as color from band, bandAccount, bandImg, bandCover
+	where band.id = bandAccount.bandId and band.bandCoverId = bandCover.id
+	and bandImgId = bandImg.id and band.id = #{id}
+	]]>
+	</select>
+</mapper>

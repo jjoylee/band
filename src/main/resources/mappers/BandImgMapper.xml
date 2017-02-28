@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.band.mapper.BandImgMapper">
+  
+  <insert id="insert" >	
+  insert into bandImg(bandImgUrl) values
+  (#{bandImgUrl}})
+  </insert>
+
+  <update id="update"> 
+  update bandImg set bandImgUrl =#{bandImgUrl}
+  where id=#{id}
+  </update>
+
+  <delete id="delete">
+  delete from bandImg
+  where id=#{id} 
+  </delete>
+
+  <select id="findByImgUrl" resultType="com.band.domain.BandImg" >
+  <![CDATA[
+  select * from bandImg where bandImgUrl = #{bandImgUrl}
+  ]]>
+  </select>
+</mapper>

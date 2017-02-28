@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.band.mapper.PostMapper">
+  
+  <insert id="insert" >
+  insert into post (bandId , accountId, text, writeDate) values
+  ( #{bandId}, #{accountId}, #{text}, now())
+  </insert>
+
+  <update id="update"> 
+  update post set bandId=#{bandId}, accountId = #{accountId}
+  ,text = #{text} where id=#{id}
+  </update>
+
+  <delete id="delete">
+  delete from post
+  where id=#{id} 
+  </delete>
+
+  <select id="findPostList" resultType="com.band.domain.Post">
+	<![CDATA[
+	select post.writeDate as writeDate, post.text as text, account.name as writer from post, account 
+	where post.bandId = #{id} and post.accountId = account.id;
+	]]>
+  </select>
+</mapper>

@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.band.mapper.AccountMapper">
+
+  <select id="findByAccountId" resultType="com.band.domain.Account" >
+  <![CDATA[
+  select * from account
+  where id=#{id}
+  ]]>
+  </select>
+  
+  <insert id="insert" >
+  insert into account (name, email, password, imgUrl, profile) values
+  ( #{name}, #{email}, #{password}, #{imgUrl}, #{profile})
+  </insert>
+
+  <update id="update"> 
+  update account set name=#{name}, email=#{email}, imgUrl=#{imgUrl}, password = #{password}, profile = #{profile}
+  where id=#{id}
+  </update>
+  
+  <select id="findPwd" resultType="String">
+  <![CDATA[
+  select password from account
+  where email=#{email}
+  ]]>
+  </select>
+    
+  <update id="changePwd">
+  update member set password=#{password}
+  where memberId=#{memberId}
+  </update>
+ 
+ <select id="findByEmail" resultType="com.band.domain.Account">
+ <![CDATA[
+  select * from account
+  where email=#{email}
+  ]]>
+ </select>
+  
+  <delete id="delete">
+  delete from account
+  where id=#{id} 
+  </delete>
+
+</mapper>

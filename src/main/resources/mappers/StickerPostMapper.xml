@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.band.mapper.SrickerPostMapper">
+  
+  <insert id="insert" >
+  insert into stickerpost (stickerId, postId) values
+  ( #{stickerId}, #{postId})
+  </insert>
+
+  <update id="update"> 
+  update stickerpost set stickerId=#{stickerId}, postId = #{postId}
+   where id=#{id}
+  </update>
+
+  <delete id="delete">
+  delete from stickerpost
+  where id=#{id} 
+  </delete>
+</mapper>
